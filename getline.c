@@ -82,7 +82,7 @@ ssize_t get_input(info_t *info)
 		*buf_p = p;
 		return (_strlen(p));
 	}
-	*buf_P = buf;
+	buf_P = buf;
 	return (r);
 }
 
@@ -100,7 +100,7 @@ ssize_t read_buf(info_t *info, char *buf, size_t *i)
 
 	if (*i)
 		return (0);
-	r = rad(info_readfd, buf, READ_BUF_SIZE);
+	r = read(info_readfd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);
@@ -132,8 +132,8 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
-	c = _strchr(buf + i, '\n');
-	k = c ? 1 (unsigned int)(c - buf) : len;
+	c = _strchr(buf + i, int '\n');
+	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p)
 		return (p ? free(p), -1 : -1);
