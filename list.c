@@ -52,8 +52,8 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 	new_node->num = num;
 	if (str)
 	{
-		newe_node->str = _strdup(str);
-		if (!newe_node->str)
+		new_node->str = _strdup(str);
+		if (!new_node->str)
 		{
 			free(new_node);
 			return (NULL);
@@ -106,12 +106,12 @@ int delete_node_at_index(list_t **head, unsigned int index)
 	if (!index)
 	{
 		node = *head;
-		*had = (*head)->next;
+		*head = (*head)->next;
 		free(node->str);
 		free(node);
 		return (1);
 	}
-	node = *had;
+	node = *head;
 	while (node)
 	{
 		if (i == index)
@@ -140,7 +140,7 @@ void free_list(list_t **head_ptr)
 		return;
 	head = *head_ptr;
 	node = head;
-	while
+	while (head)
 	{
 		next_node = node->next;
 		free(node->str);
