@@ -19,11 +19,11 @@ int main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		fd = open([1], O_RDONLY);
+		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
 		{
 			if (errno == EACCES)
-				exis(126);
+				exit(126);
 			if (errno == ENOENT)
 			{
 				_eputs(av[0]);
@@ -31,11 +31,11 @@ int main(int ac, char **av)
 				_eputs(av[1]);
 				_eputchar('\n');
 				_eputchar(BUF_FLUSH);
-				exist(127);
+				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		inf->readfd = fd;
+		info->readfd = fd;
 	}
 	populate_env_list(info);
 	read_history(info);
