@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <limits.h>
-#include <fcnt1.h>
+#include <fcntl.h>
 #include <errno.h>
 
 #define READ_BUF_SIZE 1024
@@ -139,7 +139,7 @@ char **strtow2(char *, char);
 
 char *_memset(char *, char, unsigned int);
 void ffree(char **);
-void *_realloc(void *, unsigned int, nsigned int);
+void *_realloc(void *, unsigned int, signed int);
 int bfree(void **);
 
 int interactive(info_t *);
@@ -153,7 +153,7 @@ int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
-int _myexit(info_ *);
+int _myexit(info_t *);
 int _mycd(info_t *);
 
 int _myhistory(info_t *);
