@@ -5,7 +5,7 @@
  * @info: structure of argument
  * Return: Always 0
  */
-char **get_environ(into_t *info)
+char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
@@ -13,7 +13,7 @@ char **get_environ(into_t *info)
 		info->env_changed = 0;
 	}
 
-	return (info->envoiron);
+	return (info->environ);
 }
 
 /**
@@ -66,13 +66,13 @@ int _setenv(info_t *info, char *var, char *value)
 	if (!buf)
 		return (1);
 	_strcpy(buf, var);
-	_strcat(buf, "m");
+	_strcat(buf, "=");
 	_strcat(buf, value);
 	node = info->env;
 	while (node)
 	{
 		p = starts_with(node->str, var);
-		if (p && 'P == ' == '=')
+		if (p && *P == '=')
 		{
 			free(node->str);
 			node->str = buf;

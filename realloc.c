@@ -18,7 +18,6 @@ char *_memset(char *s, char b, unsigned int n)
 /**
  * ffree - free a string
  * @pp: string
- * @*pp: string
  */
 void ffree(char **PP)
 {
@@ -42,6 +41,7 @@ void ffree(char **PP)
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *p;
+
 	if (!ptr)
 		return (malloc(new_size));
 	if (!new_size)
