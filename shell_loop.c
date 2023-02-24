@@ -51,7 +51,7 @@ int find_builtin(info_t *info)
 	builtin_table builinbl[] = {
 		{"exit", _myexit},
 		{"env", _myenv},
-		{"help", _myhelp},
+		{"help", myhelp},
 		{"history", _myhistory},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
@@ -60,14 +60,14 @@ int find_builtin(info_t *info)
 		{NULL, NULL}
 	};
 
-	for (i = 0; builtinbl[i].type; i++)
-		if (_strcmp(info->argv[0], builtinbl[i].type) == 0)
+	for (i = 0; builinbl[i].type; i++)
+		if (_strcmp(info->argv[0], builinbl[i].type) == 0)
 		{
 			info->line_count++;
-			built_in_ret = nuiltinbl[i].func(info);
+			bult_in_ret = builtiinbl[i].func(info);
 			break;
 		}
-	return (built_in_ret);
+	return (bult_in_ret);
 }
 /**
  * find_cmd - find PATH
@@ -87,7 +87,7 @@ void find_cmd(info_t *info)
 		info->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
+		if (!is_delin(info->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
