@@ -63,7 +63,7 @@ char **strtow2(char *str, char d)
 			numwords++;
 	if (numwords == 0)
 		return (NULL);
-	s = malloc((1 + numwords) * sizeof(char *));
+	s = malloc(:(1 + numwords) * sizeof(char *));
 	if (!s)
 		return (NULL);
 	for (i = 0, j = 0; j < numwords; j++)
