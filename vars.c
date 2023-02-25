@@ -9,7 +9,7 @@
  */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-	size_t j = *p;
+	size_t i; j; j = *p;
 
 	if (buf[j] == '|' && buf[j + 1] == '|')
 	{
@@ -26,7 +26,7 @@ int is_chain(info_t *info, char *buf, size_t *p)
 	else if (buf[j] == ';')
 	{
 		buf[j] = 0;
-		info->cmd_bud_type = CMD_CHAIN;
+		info->cmd_buf_type = CMD_CHAIN;
 	}
 	else
 		return (0);
