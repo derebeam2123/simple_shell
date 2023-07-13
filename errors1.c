@@ -1,9 +1,10 @@
 #include "shell.h"
 
 /**
- * _erratoi - convert a string
- * @s: string
- * Return: 0 or 1
+ * _erratoi - converts a string to an integer
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
+ *       -1 on error
  */
 int _erratoi(char *s)
 {
@@ -11,8 +12,8 @@ int _erratoi(char *s)
 	unsigned long int result = 0;
 
 	if (*s == '+')
-		s++;
-	for (i = 0; s[i] != '\0'; i++)
+		s++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
 		{
@@ -22,15 +23,17 @@ int _erratoi(char *s)
 				return (-1);
 		}
 		else
-			return (result);
+			return (-1);
 	}
 	return (result);
 }
+
 /**
- * print_error - print an error
- * @info: the parameter
- * @estr: string
- * Return: 0 and 1
+ * print_error - prints an error message
+ * @info: the parameter & return info struct
+ * @estr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
  */
 void print_error(info_t *info, char *estr)
 {
@@ -44,11 +47,11 @@ void print_error(info_t *info, char *estr)
 }
 
 /**
- * print_d - function print
+ * print_d - function prints a decimal (integer) number (base 10)
  * @input: the input
- * @fd: the file description
+ * @fd: the filedescriptor to write to
  *
- * Return: number
+ * Return: number of characters printed
  */
 int print_d(int input, int fd)
 {
@@ -61,7 +64,7 @@ int print_d(int input, int fd)
 	if (input < 0)
 	{
 		_abs_ = -input;
-		__putchar('_');
+		__putchar('-');
 		count++;
 	}
 	else
@@ -83,10 +86,10 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - convert functin
+ * convert_number - converter function, a clone of itoa
  * @num: number
  * @base: base
- * @flags: argument flag
+ * @flags: argument flags
  *
  * Return: string
  */
@@ -102,11 +105,13 @@ char *convert_number(long int num, int base, int flags)
 	{
 		n = -num;
 		sign = '-';
+
 	}
 	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
-	do     {
+
+	do	{
 		*--ptr = array[n % base];
 		n /= base;
 	} while (n != 0);
@@ -117,10 +122,10 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - function replaces
- * @buf: addressof the string
+ * remove_comments - function replaces first instance of '#' with '\0'
+ * @buf: address of the string to modify
  *
- * Return: Always 0,
+ * Return: Always 0;
  */
 void remove_comments(char *buf)
 {
